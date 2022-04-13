@@ -1,6 +1,6 @@
 class FaturamentoPage {
 
-    editarEnderecoFaturamento(nome, sobrenome, empresa, pais, endereco, numero, estado, cep, telefone, email){
+    editarEnderecoFaturamento(nome, sobrenome, empresa, pais, endereco, numero, cidade, estado, cep, telefone, email){
         cy.get('#billing_first_name').clear().type(nome) 
         cy.get('#billing_last_name').clear().type(sobrenome)
         cy.get('#billing_company').clear().type(empresa)
