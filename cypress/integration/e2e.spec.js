@@ -1,5 +1,7 @@
 /// <reference types="cypress"/>
+import FaturamentoPage from '../support/page_objects/faturamento.page'
 const perfil = require('../fixtures/perfil.json')
+const dadosBilling = require('../fixtures/billing.json')
 
 context('Funcionalidade E2E', () => {
 
@@ -24,7 +26,25 @@ context('Funcionalidade E2E', () => {
             cy.get('.woocommerce-message > .button').click()
             cy.get('.quantity > .input-text').clear().type(quantidade)
             cy.get('.actions > .clearfix > .pull-right').click()
-            cy.get('.checkout-button').click()
+            cy.get('.checkout-button').click({force: true})
+
+            cy.get('#billing_first_name').clear().type('Lichia') 
+            cy.get('#billing_last_name').clear().type('Teste')
+            cy.get('#billing_company').clear().type('Taylor Nation')
+            cy.get('#select2-billing_country-container').click().type('Brasil').get('[aria-selected="true"]').click()
+            cy.get('#billing_address_1').clear().type('Av. Rio Branco')
+            cy.get('#billing_address_2').clear().type('1989')
+            cy.get('#billing_city').clear().type('Recife')
+            cy.get('#select2-billing_state-container').click().type('Pernambuco' + '{enter}')
+            cy.get('#billing_postcode').clear().type('50030090')
+            cy.get('#billing_phone').clear().type('81000000000000')
+            cy.get('#billing_email').clear().type('lichiateste@email.com')
+            cy.get('#payment_method_cod').click()
+            cy.get('#terms').check()
+            cy.get('#place_order').click()
+            cy.get('.woocommerce-notice').should('contain', 'Obrigado. Seu pedido foi recebido.')
+            
+
         })
     });
 
