@@ -18,11 +18,9 @@ context('Funcionalidade E2E', () => {
 
             cy.get('.page-title').should('contain', 'Minha conta')
             cy.get('#primary-menu > .menu-item-629 > a').click()
-            cy.get('[class="product-block grid"]').first().click()
-            cy.get('.button-variable-item-XL').click()
-            cy.get('.button-variable-item-Red').click()
-            cy.get('.input-text').clear().type(quantidade)
-            cy.get('.single_add_to_cart_button').click()
+
+            cy.addProdutos('XL', 'Red', 4)
+
             cy.get('.woocommerce-message > .button').click()
             cy.get('.quantity > .input-text').clear().type(quantidade)
             cy.get('.actions > .clearfix > .pull-right').click()
